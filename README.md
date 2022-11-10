@@ -25,7 +25,7 @@ Note that above command could be depricated by the time you read this.
 Check this page[https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html] to see the latest command fitting your pytorch version
 
 ### Run
-As you are still located at the root directory with:
+As you are still located at the root directory, start model training with:
 ```
 python train.py
 ```
