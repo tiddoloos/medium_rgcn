@@ -1,4 +1,4 @@
-# Entity type prediction with Relation Graph Convolutional Network
+# Entity type prediction with Relational Graph Convolutional Network
 
 ### Setup with conda
 Clone the repository and save at a desired location on you machine.
