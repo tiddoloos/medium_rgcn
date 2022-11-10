@@ -24,7 +24,7 @@ class ModelTrainer:
     
 
     def compute_f1(self, graph: Graph, x: Tensor, y: Tensor) -> float:
-        '''evaluate the model with the F1 macro metric'''
+        '''evaluate the model with the F1 samples metric'''
         pred = self.model(graph.edge_index, graph.edge_type)
         pred = torch.round(pred)
 
