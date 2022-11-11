@@ -1,0 +1,6 @@
+<Tarantino> <directed> <KillBill> .
+<Tarantino> <directed> <PulpFiction> .
+<KillBill> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <movie> .
+<PulpFiction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <movie> .
+<Tarantino> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <director> .
+<Tarantino> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <person> .
