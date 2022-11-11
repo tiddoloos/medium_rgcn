@@ -52,7 +52,7 @@ class Graph:
 
         self.get_graph_triples(file_path)
         
-        # store all subjects, predicates and objects 
+        # to store all subjects, predicates and objects 
         subjects = set()
         predicates = set()
         objects = set()
@@ -70,6 +70,7 @@ class Graph:
             if triple_list != ['']:
                 s, p, o = triple_list[0].lower(), triple_list[1].lower(), triple_list[2].lower()
 
+                # add nodes and predicates
                 subjects.add(s)
                 predicates.add(p)
                 objects.add(o)
@@ -80,7 +81,7 @@ class Graph:
                         self.node2types_dict[s].add(o)
 
         # print class occurence dict too get insight in class (im)balance
-        print(class_count)
+        # print(class_count)
     
         # enumereate classes
         self.enum_classes = {lab: i for i, lab in enumerate(class_count.keys())}
@@ -90,8 +91,8 @@ class Graph:
         self.enum_nodes = {str(node): i for i, node in enumerate(sorted(nodes))}
 
         # remove the rdf:type relations since we would like to predict the types
+        #  and enumerate the relations and save as dict
         predicates.remove(self.RDF_TYPE)
-        # enumerate the relations and save as dict
         self.enum_relations = {str(rel): i for i, rel in enumerate(sorted(predicates))}
 
 
