@@ -17,7 +17,7 @@ class TrainingData:
     def create_training_data(self, graph: Graph) -> None:
         train_indices: list = []
         train_labels:list = []
-        graph.node2types_dict.keys()
+        
         for node, types in graph.node2types_dict.items():
             labels = [0 for _ in range(len(graph.enum_classes.keys()))]
             for t in types:
@@ -25,8 +25,16 @@ class TrainingData:
             train_indices.append(graph.enum_nodes[node])
             train_labels.append(labels)
         
-        x_train, x_test, y_train, y_test = train_test_split(train_indices, train_labels,  test_size=0.2, random_state=1, shuffle=True) 
-        x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.25, random_state=1, shuffle=True)
+        x_train, x_test, y_train, y_test = train_test_split(train_indices,
+                                                            train_labels,
+                                                            test_size=0.2,
+                                                            random_state=1,
+                                                            shuffle=True) 
+        x_train, x_val, y_train, y_val = train_test_split(x_train,
+                                                          y_train,
+                                                          test_size=0.25,
+                                                          random_state=1,
+                                                          shuffle=True)
 
         self.x_train = torch.tensor(x_train)
         self.x_test = torch.tensor(x_test) 
