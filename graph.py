@@ -32,18 +32,15 @@ class Graph:
             if triple_list != ['']:
                 s, p, o = triple_list[0].lower(), triple_list[1].lower(), triple_list[2].lower()
 
-                if self.enum_nodes.get(s) is not None \
-                    and self.enum_relations.get(p) is not None \
-                    and self.enum_nodes.get(o) is not None:
+                if self.enum_relations.get(p) != None:
 
                     # create edge list and also add inverse edge of each edge
                     src, dst, rel = self.enum_nodes[s], self.enum_nodes[o], self.enum_relations[p]
                     edge_list.append([src, dst, 2 * rel])
                     edge_list.append([dst, src, 2 * rel + 1])
-      
-        edge_list = sorted(edge_list, key=lambda x: (x[0], x[1], x[2]))
-        edges = torch.tensor(edge_list, dtype=torch.long).t().contiguous() # shape(3, 2*number of edges)
-        self.edge_index = edges[:2]
+   
+        edges = torch.tensor(edge_list, dtype=torch.long).t() # shape(3, 2*number of edges)
+        self.edge_index = edges[:2] 
         self.edge_type = edges[2]
 
 
@@ -80,12 +77,12 @@ class Graph:
 
         # create a list with all nodes and enumerate the nodes
         nodes = list(subjects.union(objects))
-        self.enum_nodes = {str(node): i for i, node in enumerate(sorted(nodes))}
+        self.enum_nodes = {node: i for i, node in enumerate(sorted(nodes))}
 
         # remove the rdf:type relations since we would like to predict the types
         # and enumerate the relations and save as dict
-        predicates.remove(self.RDF_TYPE)
-        self.enum_relations = {str(rel): i for i, rel in enumerate(sorted(predicates))}
+        predicates.remove(self.RDF_TYPE.lower())
+        self.enum_relations = {rel: i for i, rel in enumerate(sorted(predicates))}
     
         # enumereate classes
         self.enum_classes = {lab: i for i, lab in enumerate(class_count.keys())}
