@@ -11,12 +11,12 @@ conda create -n medium_rgcn python=3.8
 conda activate medium_rgcn
 ```
 Now we have an active enviroment.
-We now we install the depedencies with:
+We install the depedencies with:
 ```
 pip install -r requirements.txt
 ```
 The `torch_geometric` package is missing in requirements.txt.
-We install this seperately as installing it with the requirements.txt could fail (don't know why).
+We install this seperately as installing it with the requirements.txt could fail.
 Now Install `toch_geometric` in the environment with the following command:
 ```
 pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.12.0+cpu.html
