@@ -11,8 +11,10 @@ class RGCNModel(nn.Module):
         self.embedding = nn.Embedding(num_nodes, emb_dim)
         self.rgcn1 = RGCNConv(in_channels=emb_dim, out_channels=hidden_l, num_relations=num_relations, num_bases=None)
         self.rgcn2 = RGCNConv(in_channels=hidden_l, out_channels=num_classes, num_relations=num_relations, num_bases=None)
-        nn.init.kaiming_uniform_(self.rgcn1.weight, mode='fan_out')
-        nn.init.kaiming_uniform_(self.rgcn2.weight, mode='fan_out')
+
+        # intialize weights
+        nn.init.kaiming_uniform_(self.rgcn1.weight, mode='fan_out', nonlinearity='relu')
+        nn.init.kaiming_uniform_(self.rgcn2.weight, mode='fan_out', nonlinearity='relu')
 
     def forward(self, edge_index, edge_type) -> Tensor:
         x = self.rgcn1(self.embedding.weight, edge_index, edge_type)
