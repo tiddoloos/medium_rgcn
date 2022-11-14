@@ -27,7 +27,7 @@ class ModelTrainer:
         '''evaluate the model with the F1 samples metric'''
         pred = self.model(graph.edge_index, graph.edge_type)
         pred = torch.round(pred)
-
+        
         # f1_score function does not accept torch tensor with gradient
         pred = pred.detach().numpy()
         f1_s = f1_score(y, pred[x], average='samples', zero_division=0)
