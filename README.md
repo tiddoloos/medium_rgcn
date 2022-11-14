@@ -22,7 +22,7 @@ Now Install `toch_geometric` in the environment with the following command:
 pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.12.0+cpu.html
 ```
 Note that above command could be depricated by the time you read this.
-Check this page[https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html] to see the latest install command for your machine.
+Check this [page](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html) to see the latest install command for your machine.
 
 ### Run
 As you are still located at the root directory, start model training with:
