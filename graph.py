@@ -11,9 +11,9 @@ class Graph:
     def __init__(self) -> None:
         self.graph_triples: list = None
         self.node2types_dict: dict = defaultdict(set)
-        self.enum_classes: list = None
         self.enum_nodes: dict = None
         self.enum_relations: dict = None
+        self.enum_classes: list = None
         self.edge_index: Tensor = None
         self.edge_type: Tensor = None
 
@@ -59,9 +59,6 @@ class Graph:
 
         class_count = defaultdict(int)
 
-        # create a dict with the a nodes as keys and a set with types as the values
-        self.node2types_dict = defaultdict(set)
-
         # loop over each triple and split 2 times on space:' '
         for triple in self.graph_triples:
             triple_list = triple[:-2].split(' ', maxsplit=2)
@@ -76,24 +73,25 @@ class Graph:
                 objects.add(o)
 
                  # check if subject is a valid entity and check if predicate is rdf:type
-                if str(s).split('#')[0] != 'http://swrc.ontoware.org/ontology' and str(p) == self.RDF_TYPE.lower():
+                if str(s).split('#')[0] != 'http://swrc.ontoware.org/ontology' \
+                    and str(p) == self.RDF_TYPE.lower():
                         class_count[str(o)] += 1
                         self.node2types_dict[s].add(o)
-
-        # print class occurence dict too get insight in class (im)balance
-        # print(class_count)
-    
-        # enumereate classes
-        self.enum_classes = {lab: i for i, lab in enumerate(class_count.keys())}
 
         # create a list with all nodes and enumerate the nodes
         nodes = list(subjects.union(objects))
         self.enum_nodes = {str(node): i for i, node in enumerate(sorted(nodes))}
 
         # remove the rdf:type relations since we would like to predict the types
-        #  and enumerate the relations and save as dict
+        # and enumerate the relations and save as dict
         predicates.remove(self.RDF_TYPE)
         self.enum_relations = {str(rel): i for i, rel in enumerate(sorted(predicates))}
+    
+        # enumereate classes
+        self.enum_classes = {lab: i for i, lab in enumerate(class_count.keys())}
+
+        # print class occurence dict too get insight in class (im)balance
+        # print(class_count)
 
 
     def print_graph_statistics(self) -> None:
