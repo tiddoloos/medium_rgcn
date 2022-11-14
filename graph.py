@@ -17,11 +17,11 @@ class Graph:
         self.edge_index: Tensor = None
         self.edge_type: Tensor = None
 
+
     def get_graph_triples(self, file_path: str) -> None:
         with open(file_path, 'r') as file:
-            graph_triples = file.read().splitlines()
-            self.graph_triples = graph_triples
-
+            self.graph_triples = file.read().splitlines()
+            
 
     def create_edge_data(self):
         '''create edge_index and edge_type'''
