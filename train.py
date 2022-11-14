@@ -27,7 +27,7 @@ class ModelTrainer:
         '''evaluate the model with the F1 samples metric'''
         pred = self.model(graph.edge_index, graph.edge_type)
         pred = torch.round(pred)
-        
+
         # f1_score function does not accept torch tensor with gradient
         pred = pred.detach().numpy()
         f1_s = f1_score(y, pred[x], average='samples', zero_division=0)
@@ -87,7 +87,7 @@ if __name__=='__main__':
     model = RGCNModel(len(graph.enum_nodes.keys()),
                         emb_dim,
                         hidden_l,
-                        len(graph.enum_relations.keys()),
+                        2*len(graph.enum_relations.keys()),
                         len(graph.enum_classes.keys()))
 
     trainer = ModelTrainer(model, epochs, lr, weight_d)
