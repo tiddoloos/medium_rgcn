@@ -68,7 +68,7 @@ class ModelTrainer:
 
 
 if __name__=='__main__':
-    file_path = './data/example.nt'
+    file_path = './data/AIFB.nt'
     graph = Graph()
     graph.init_graph(file_path)
     graph.create_edge_data()
