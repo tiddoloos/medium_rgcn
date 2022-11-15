@@ -1,5 +1,6 @@
 # Entity type prediction with Relational Graph Convolutional Network
 
+This repository is part of [this post](https://medium.com/@tls430/setup-for-entity-type-prediction-with-relational-graph-convolutional-network-pytorch-3554be0bfd5a) on medium.com.
 ### Setup with conda
 Clone the repository and save at a desired location on you machine.
 Navigate to the root of the respository in you terminal.
