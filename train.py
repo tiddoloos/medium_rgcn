@@ -17,20 +17,20 @@ class ModelTrainer:
                 lr: float,
                 weight_d: float) -> None:
 
-        self.model: nn.Module = model
-        self.epochs: int = epochs
+        self.model = model
+        self.epochs = epochs
         self.lr = lr
         self.weight_d = weight_d
     
 
-    def compute_f1(self, graph: Graph, x: Tensor, y: Tensor) -> float:
+    def compute_f1(self, graph: Graph, x: Tensor, y_true: Tensor) -> float:
         '''evaluate the model with the F1 samples metric'''
         pred = self.model(graph.edge_index, graph.edge_type)
         pred = torch.round(pred)
         y_pred = pred[x]
         # f1_score function does not accept torch tensor with gradient
         y_pred = y_pred.detach().numpy()
-        f1_s = f1_score(y, y_pred, average='samples', zero_division=0)
+        f1_s = f1_score(y_true, y_pred, average='samples', zero_division=0)
         return f1_s
 
 
@@ -58,17 +58,17 @@ class ModelTrainer:
             l = output.item()
             losses.append(l)
             
-            # every tenth epoch print loss and F1 weighted
+            # every tenth epoch print loss and F1_samples
             if epoch%10==0:
                 l = output.item()
                 print(f'Epoch: {epoch}, Loss: {l:.4f}\n',
-                    f'F1 weighted on validation set:{f1_s:.2f}')
+                    f'F1 score on validation set:{f1_s:.2f}')
 
         return losses, f1_ss,
 
 
 if __name__=='__main__':
-    file_path = './data/AIFB.nt'
+    file_path = './data/example.nt'
     graph = Graph()
     graph.init_graph(file_path)
     graph.create_edge_data()
