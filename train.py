@@ -87,7 +87,7 @@ if __name__=='__main__':
     model = RGCNModel(len(graph.enum_nodes.keys()),
                         emb_dim,
                         hidden_l,
-                        2*len(graph.enum_relations.keys())+1,
+                        2*len(graph.enum_relations.keys())+1, # remember the inverse relations in the edge data
                         len(graph.enum_classes.keys()))
 
     trainer = ModelTrainer(model, epochs, lr, weight_d)
