@@ -39,7 +39,7 @@ class Graph:
                     edge_list.append([src, dst, 2 * rel])
                     edge_list.append([dst, src, 2 * rel + 1])
    
-        edges = torch.tensor(edge_list, dtype=torch.long).t() # shape(3, 2*number of edges)
+        edges = torch.tensor(edge_list, dtype=torch.long).t() # shape(3, (2*number_of_edges - #RDF_TYPE_edges))
         self.edge_index = edges[:2] 
         self.edge_type = edges[2]
 
