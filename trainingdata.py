@@ -2,6 +2,7 @@ import torch
 
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
+
 from graph import Graph
 
 @dataclass
@@ -17,7 +18,7 @@ class TrainingData:
     def create_training_data(self, graph: Graph) -> None:
         train_indices: list = []
         train_labels:list = []
-        
+
         for node, types in graph.node2types_dict.items():
             labels = [0 for _ in range(len(graph.enum_classes.keys()))]
             for t in types:
@@ -30,6 +31,7 @@ class TrainingData:
                                                             test_size=0.2,
                                                             random_state=1,
                                                             shuffle=True) 
+    
         x_train, x_val, y_train, y_val = train_test_split(x_train,
                                                           y_train,
                                                           test_size=0.25,
