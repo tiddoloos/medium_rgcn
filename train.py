@@ -94,8 +94,8 @@ if __name__=='__main__':
     losses, f1_ss = trainer.train_model(graph, training_data)
     
     # plot the results
-    plot_results(epochs, losses, title='BCELoss on trainig set during epochs', y_label='Loss')
-    plot_results(epochs, f1_ss, title='F1 score on validation set during epochs', y_label='F1 samples')
+    plot_results(epochs, losses, title='BCELoss on trainig set during epochs', y_label='BCELoss')
+    plot_results(epochs, f1_ss, title='F1 score on validation set during epochs', y_label='F1 samples score')
 
     # evaluate model on test set and print result
     f1_s_test = trainer.compute_f1(graph, training_data.x_test, training_data.y_test)
