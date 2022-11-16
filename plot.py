@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def plot_results(epochs: int, y: list, title: str, y_label: str) -> None:
 
     x = list(range(epochs))

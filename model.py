@@ -6,7 +6,6 @@ from torch_geometric.nn import RGCNConv
 
 
 class RGCNModel(nn.Module):
-
     def __init__ (self, num_nodes: int,
                         emb_dim: int,
                         hidden_l: int,
