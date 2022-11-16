@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 
 from graph import Graph
 
+
 @dataclass
 class TrainingData:
     '''class to create and store training data'''
@@ -17,7 +18,7 @@ class TrainingData:
 
     def create_training_data(self, graph: Graph) -> None:
         train_indices: list = []
-        train_labels:list = []
+        train_labels: list = []
 
         for node, types in graph.node2types_dict.items():
             labels = [0 for _ in range(len(graph.enum_classes.keys()))]
