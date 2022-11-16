@@ -6,6 +6,7 @@ from torch_geometric.nn import RGCNConv
 
 
 class RGCNModel(nn.Module):
+
     def __init__ (self, num_nodes: int,
                         emb_dim: int,
                         hidden_l: int,
@@ -26,6 +27,7 @@ class RGCNModel(nn.Module):
         # intialize weights
         nn.init.kaiming_uniform_(self.rgcn1.weight, mode='fan_out', nonlinearity='relu')
         nn.init.kaiming_uniform_(self.rgcn2.weight, mode='fan_out', nonlinearity='relu')
+
 
     def forward(self, edge_index: LongTensor, edge_type: LongTensor) -> Tensor:
         x = self.rgcn1(self.embedding.weight, edge_index, edge_type)
