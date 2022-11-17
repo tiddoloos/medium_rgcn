@@ -30,7 +30,7 @@ class ModelTrainer:
         y_pred = pred[x]
         # f1_score function does not accept torch tensor with gradient
         y_pred = y_pred.detach().numpy()
-        f1_s = f1_score(y_true, y_pred, average='samples', zero_division=0)
+        f1_s = f1_score(y_true, y_pred, average='weighted', zero_division=0)
         return f1_s
 
 
@@ -95,7 +95,7 @@ if __name__=='__main__':
     
     # plot the results
     plot_results(epochs, losses, title='BCELoss on training set during epochs', y_label='BCELoss')
-    plot_results(epochs, f1_ss, title='F1 score on validation set during epochs', y_label='F1 samples score')
+    plot_results(epochs, f1_ss, title='F1 score on validation set during epochs', y_label='weighted F1 score')
 
     # evaluate model on test set and print result
     f1_s_test = trainer.compute_f1(graph, training_data.x_test, training_data.y_test)
