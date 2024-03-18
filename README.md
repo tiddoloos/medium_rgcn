@@ -6,7 +6,7 @@ This repository is part of [this blog post](https://medium.com/@tls430/setup-for
 Clone the repository and save at a desired location on you machine.
 Navigate to the root of the respository in you terminal.
 Now setup an enviroment.
-You can setup the environment to your linking offcourse.
+You can setup the environment to your linking offcourse, but here is an example:
 ```
 python -m venv venv
 source venv/bin/activate
