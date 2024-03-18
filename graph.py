@@ -10,7 +10,7 @@ class Graph:
 
     def __init__(self) -> None:
         self.graph_triples: list = None
-        self.node2types_dict: dict = defaultdict(set)
+        self.node_types: dict = defaultdict(set)
         self.enum_nodes: dict = None
         self.enum_relations: dict = None
         self.enum_classes: list = None
@@ -32,7 +32,7 @@ class Graph:
             if triple_list != ['']:
                 s, p, o = triple_list[0].lower(), triple_list[1].lower(), triple_list[2].lower()
 
-                if self.enum_relations.get(p) != None:
+                if self.enum_relations.get(p) is not None:
 
                     # create edge list and also add inverse edge of each edge
                     src, dst, rel = self.enum_nodes[s], self.enum_nodes[o], self.enum_relations[p]
@@ -49,11 +49,10 @@ class Graph:
 
         self.get_graph_triples(file_path)
         
-        # to store all subjects, predicates and objects 
+        # store all subjects, predicates and objects 
         subjects = set()
         predicates = set()
         objects = set()
-
         class_count = defaultdict(int)
 
         # loop over each triple and split 2 times on space:' '
@@ -73,7 +72,7 @@ class Graph:
                 if str(s).split('#')[0] != 'http://swrc.ontoware.org/ontology' \
                     and str(p) == self.RDF_TYPE.lower():
                         class_count[str(o)] += 1
-                        self.node2types_dict[s].add(o)
+                        self.node_types[s].add(o)
 
         # create a list with all nodes and enumerate the nodes
         nodes = list(subjects.union(objects))
@@ -92,7 +91,7 @@ class Graph:
 
 
     def print_graph_statistics(self) -> None:
-        print('GRPAH STATISTICS:')
+        print('GRAPH STATISTICS:')
         print('number of nodes:', len(self.enum_nodes.keys()))
         print('number of edges:', len(self.graph_triples))
         print('number of relations:', len(self.enum_relations.keys()))

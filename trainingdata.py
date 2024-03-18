@@ -20,7 +20,7 @@ class TrainingData:
         train_indices: list = []
         train_labels: list = []
 
-        for node, types in graph.node2types_dict.items():
+        for node, types in graph.node_types.items():
             labels = [0 for _ in range(len(graph.enum_classes.keys()))]
             for t in types:
                 labels[graph.enum_classes[t]] = 1.0
