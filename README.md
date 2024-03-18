@@ -22,5 +22,5 @@ As you are still located at the root directory, start model training with:
 ```
 python train.py
 ```
-The programm trains the RGCN model for the `./AIFB.nt` dataset.
+The programm trains the RGCN model for the `data/AIFB.nt` dataset.
 It also shows plots of the loss and F1 score on the validation set during training epochs.
